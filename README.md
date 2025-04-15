@@ -28,6 +28,25 @@ Nesta versão, implementamos:
 
 ---
 
+## 🔍 Etapas da Versão 1.0
+
+1. **Download do Dataset Público**
+   - Dataset: [Brazilian Stock Market - Kaggle](https://www.kaggle.com/datasets/therasforfinance/brazilian-stock-market-price-and-fundamentals)
+
+2. **Exploração dos Dados**
+   - Leitura com `pandas`
+   - Limpeza e tratamento inicial
+
+3. **Desenvolvimento de IA**
+   - Aplicação de `Langchain` ou `pandas-ai` para consultas em linguagem natural
+   - Exemplo: *"Qual foi o lucro líquido da empresa XYZ em 2021?"*
+
+4. **Protótipo de Chatbot**
+   - Interface simples via terminal ou Jupyter
+   - Integração com IA para responder perguntas sobre os dados
+
+---
+
 ## 🛠️ Tecnologias utilizadas
 
 - Python 3.10+
