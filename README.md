@@ -106,7 +106,7 @@ Os arquivos de dados são armazenados em uma pasta pública no Google Drive, que
 
 ## ▶️ Como executar
 
-1. Acesse o [Google Colab Notebook](#) (link será adicionado)
+1. Acesse o [Google Colab Notebook](https://colab.research.google.com/drive/1LWPcXVSdN8A_4_E_Yzc7B0gHO-j5kEHQ?usp=sharing)
 2. Suba o arquivo CSV ou use o arquivo pré-carregado
 3. Insira sua OpenAI API Key (opcional – o código funciona com respostas locais simples também)
 4. Conecte-se ao banco de dados SQLite (salvo no Google Drive)
@@ -143,7 +143,7 @@ Os arquivos de dados são armazenados em uma pasta pública no Google Drive, que
 
 │ └── contabilidade_simulada.csv 
 
-│ ├── chatbot_colab.ipynb 
+│ ├── chatbot_colab.py
 
 ├── README.md 
 
@@ -155,3 +155,23 @@ Os arquivos de dados são armazenados em uma pasta pública no Google Drive, que
 
 Este projeto está sendo desenvolvido por Leonardo Santos Medeiros, como parte de seu portfólio de **IA aplicada à Contabilidade**.  
 Contribuições, dúvidas e sugestões são bem-vindas!
+
+O nome do repositório é **Contabilidade_Inteligente** e o arquivo Python está dentro da pasta `data/` como `chatbot_colab.py`.  
+Se você deseja contribuir ou fazer sugestões, por favor, crie uma **issue** ou envie um **pull request**!
+
+---
+
+## 🤝 Contribuindo
+
+Sinta-se à vontade para contribuir para o projeto! Para isso, basta seguir os seguintes passos:
+
+1. Faça um **fork** deste repositório.
+2. Crie uma **branch** com uma nova funcionalidade ou correção.
+3. Faça o **commit** das suas alterações.
+4. Envie um **pull request** com uma descrição clara do que foi alterado e por que.
+
+---
+
+## 📜 Licença
+
+Este projeto está licenciado sob a Licença MIT - consulte o arquivo [LICENSE](LICENSE) para mais detalhes.
