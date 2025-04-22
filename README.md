@@ -1,6 +1,6 @@
 # 💼 Contabilidade Inteligente com IA 🤖
 
-Este projeto demonstra como a Inteligência Artificial pode ser aplicada no contexto de contabilidade para automatizar tarefas, responder perguntas sobre dados contábeis e oferecer insights em tempo real. A versão atual reduz até 15% do tempo gasto com procuras e respostas de perguntas graças a um chatbox que lê e funciona como um chatGPT e responde suas perguntas e trás soluções. 
+Este projeto demonstra como a Inteligência Artificial pode ser aplicada no contexto de contabilidade para automatizar tarefas, responder perguntas sobre dados contábeis e oferecer insights em tempo real. A versão atual reduz até 15% do tempo gasto com procuras e respostas de perguntas, usando uma base de dados e algoritmos de IA. O chatbox, que vai permitir interações mais naturais, será implementado em versões futuras.
 
 ---
 
@@ -10,7 +10,7 @@ Criar um sistema simples e funcional que:
 - Utilize **dados contábeis públicos** (ou simulados).
 - Permita **consultas inteligentes via IA**.
 - Rode de forma gratuita no **Google Colab**.
-- Possua uma interface simples com **chatbox interativo** (usando Streamlit ou similar).
+- Possua uma interface simples com **chatbox interativo** (a ser implementado em versões futuras).
 - Seja uma base para versões futuras com mais funcionalidades.
 
 ---
@@ -21,8 +21,10 @@ Nesta versão, implementamos:
 
 ✅ **Banco de dados público simulado** com dados de despesas, receitas e impostos  
 ✅ **Código em Python (100% gratuito)** executável no Google Colab  
-✅ **Chatbot inteligente** baseado em GPT (via API ou local com fallback)  
-✅ Capacidade de fazer perguntas como:
+✅ **Base de dados SQLite** armazenada no Google Drive (ainda não há chatbox interativo nesta versão)  
+✅ **Capacidade de fazer perguntas sobre os dados contábeis** (sem chatbox interativo para agora, mas estará disponível futuramente)
+
+**Exemplos de perguntas**:
 > “Quais foram as despesas da empresa X em fevereiro?”  
 > “Qual foi o imposto total em 2022?”
 
@@ -41,9 +43,23 @@ Nesta versão, implementamos:
    - Aplicação de `Langchain` ou `pandas-ai` para consultas em linguagem natural
    - Exemplo: *"Qual foi o lucro líquido da empresa XYZ em 2021?"*
 
-4. **Protótipo de Chatbot**
-   - Interface simples via terminal ou Jupyter
-   - Integração com IA para responder perguntas sobre os dados
+4. **Banco de Dados SQLite**
+   - Dados armazenados em um banco de dados SQLite no Google Drive, acessível por Python
+   - A base de dados contém tabelas como `empresas`, `indicadores_financeiros`, `dividendos`, `precos_acoes`, entre outras.
+
+   **Exemplo de Dados:**
+
+   | Empresa    | Data       | Tipo     | Valor   |
+   |------------|------------|----------|---------|
+   | Petrobras  | 2022-06-30 | Receita  | 15000.00|
+   | Vale S.A.  | 2022-06-30 | Imposto  | 2000.00 |
+   | Ambev      | 2022-07-01 | Despesa  | 5000.00 |
+
+   Esses dados são retirados do conjunto de dados [Brazilian Stock Market - Kaggle](https://www.kaggle.com/datasets/therasforfinance/brazilian-stock-market-price-and-fundamentals).
+
+5. **Protótipo de Chatbot**
+   - **Chatbox interativo** será implementado em versões futuras utilizando `Streamlit`
+   - Por enquanto, o código oferece respostas simples via IA, mas sem interface de chat.
 
 ---
 
@@ -54,22 +70,37 @@ Nesta versão, implementamos:
 - Pandas
 - OpenAI API (opcional)
 - Streamlit (futuramente)
-- SQLite / CSV como banco de dados
+- SQLite (banco de dados)
 - HuggingFace / LangChain (futuramente)
 
 ---
 
 ## 🧠 Banco de Dados
 
-Usaremos um conjunto de dados públicos/simulados com as seguintes colunas:
+Usaremos um conjunto de dados públicos/simulados com as seguintes colunas, armazenadas em um banco de dados SQLite no Google Drive:
 
-| Empresa | Data       | Tipo       | Valor    |
-|---------|------------|------------|----------|
-| Empresa X | 2023-02-15 | Imposto    | 2500.00  |
-| Empresa Y | 2023-02-17 | Receita    | 12000.00 |
-| Empresa Z | 2023-03-01 | Despesa    | 1500.00  |
+| Empresa    | Data       | Tipo     | Valor   |
+|------------|------------|----------|---------|
+| Petrobras  | 2022-06-30 | Receita  | 15000.00|
+| Vale S.A.  | 2022-06-30 | Imposto  | 2000.00 |
+| Ambev      | 2022-07-01 | Despesa  | 5000.00 |
 
-Fonte: [base simulada](#) (iremos definir ou criar)
+O banco de dados contém as seguintes tabelas:
+
+- **empresas**: informações sobre as empresas.
+- **indicadores_financeiros**: dados financeiros como receita bruta, lucro líquido, etc.
+- **dividendos**: informações sobre dividendos pagos.
+- **precos_acoes**: preços das ações das empresas.
+
+Fonte: [base simulada - Kaggle](https://www.kaggle.com/datasets/therasforfinance/brazilian-stock-market-price-and-fundamentals)
+
+---
+
+## 📂 Google Drive - Banco de Dados
+
+Os arquivos de dados são armazenados em uma pasta pública no Google Drive, que pode ser acessada para leitura. Aqui está o link para a pasta pública:
+
+[Google Drive - Pasta Pública com Dados Contábeis](https://drive.google.com/drive/folders/1uCtLvsC2uwcyNNXxTPpLJTeNib20c_fV?usp=sharing)
 
 ---
 
@@ -78,8 +109,9 @@ Fonte: [base simulada](#) (iremos definir ou criar)
 1. Acesse o [Google Colab Notebook](#) (link será adicionado)
 2. Suba o arquivo CSV ou use o arquivo pré-carregado
 3. Insira sua OpenAI API Key (opcional – o código funciona com respostas locais simples também)
-4. Faça perguntas no campo de input
-5. Veja as respostas geradas pela IA com base no banco de dados
+4. Conecte-se ao banco de dados SQLite (salvo no Google Drive)
+5. Faça perguntas no campo de input
+6. Veja as respostas geradas pela IA com base no banco de dados
 
 ---
 
