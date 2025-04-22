@@ -1,0 +1,5 @@
+pandas==2.2.2
+sqlalchemy==2.0.40
+psycopg2==2.9.10
+pyarrow==18.1.0
+openai==0.28
