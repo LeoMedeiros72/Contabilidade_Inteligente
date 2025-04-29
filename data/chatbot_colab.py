@@ -7,6 +7,11 @@ import os
 import shutil
 import pandas as pd
 from sqlalchemy import create_engine, text
+from google.colab import drive
+
+# Montar o drive
+drive.mount('/content/drive')
+
 
 # -------------------- EXTRAÇÃO DE ARQUIVOS ZIP --------------------
 
@@ -14,7 +19,7 @@ from sqlalchemy import create_engine, text
 caminho_zip = '/content/drive/MyDrive/ProjetoIA_ML/archive.zip'
 
 # Caminho para a pasta onde os arquivos serão extraídos
-pasta_extraida = '/content/drive/MyDrive/ProjetoIA_ML/extracao/'
+pasta_extraida = '/content/drive/MyDrive/ProjetoIA_ML/extracted/'
 
 # Verificar se o arquivo ZIP existe
 if os.path.exists(caminho_zip):
@@ -174,3 +179,47 @@ with engine.connect() as connection:
     print("Tabelas no banco de dados:")
     for table in tables:
         print(table[0])  # Exibe o nome de cada tabela
+
+
+
+import pandas as pd
+import os
+import zipfile
+from sqlalchemy import create_engine
+
+# -------------------- CRIAR DATAFRAME PARA CADA TABELA CSV OU PARQUET --------------------
+
+# Caminhos
+caminho_zip = '/content/drive/MyDrive/ProjetoIA_ML/archive.zip'
+pasta_extraida = '/content/drive/MyDrive/ProjetoIA_ML/extracted/'
+
+# Conexão com o banco SQLite (pode ser outro, como PostgreSQL etc.)
+engine = create_engine('sqlite:///meu_banco_contabilidade.db')
+
+# Extrair os arquivos ZIP
+if os.path.exists(caminho_zip):
+    with zipfile.ZipFile(caminho_zip, 'r') as zip_ref:
+        zip_ref.extractall(pasta_extraida)
+    print("ZIP extraído com sucesso!")
+
+# -------------------- EXIBIR DATAFRAMES QUE DERAM CERTO QTD DE LINHAS E LOG ERRADOS  --------------------
+
+# Iterar sobre arquivos extraídos
+for root, dirs, files in os.walk(pasta_extraida):
+    for arquivo in files:
+        caminho_completo = os.path.join(root, arquivo)
+        nome_base = os.path.splitext(arquivo)[0].lower().replace('-', '_').replace(' ', '_')
+        
+        try:
+            if arquivo.endswith('.csv'):
+                df = pd.read_csv(caminho_completo)
+            elif arquivo.endswith('.parquet'):
+                df = pd.read_parquet(caminho_completo)
+            else:
+                continue  # Ignora outros arquivos
+
+            df.to_sql(nome_base, engine, if_exists='replace', index=False)
+            print(f"✅ Tabela '{nome_base}' criada com sucesso com {len(df)} linhas.")
+        
+        except Exception as e:
+            print(f"❌ Erro ao processar {arquivo}: {e}")
