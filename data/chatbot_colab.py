@@ -223,3 +223,19 @@ for root, dirs, files in os.walk(pasta_extraida):
         
         except Exception as e:
             print(f"❌ Erro ao processar {arquivo}: {e}")
+
+
+# -------------------- EXIBIR DATAFRAMES PARA ANÁLISE  --------------------
+
+
+from sqlalchemy import inspect
+
+insp = inspect(engine)
+tabelas = insp.get_table_names()
+print("Tabelas disponíveis:", tabelas)
+
+# Exibir as primeiras linhas de cada tabela
+for tabela in tabelas:
+    df = pd.read_sql_table(tabela, engine)
+    display(f"\n📄 Tabela: {tabela}")
+    display(df.head())
