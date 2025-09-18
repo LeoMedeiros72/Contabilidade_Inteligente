@@ -1,0 +1,34 @@
+cat << 'EOF' > .gitignore
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Cache do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.mypy_cache/
+
+# Ambiente virtual
+.venv/
+env/
+venv/
+
+# Dados locais / volumes
+postgres_data/
+flowise_data/
+database/
+*.db
+
+# Arquivos compactados
+*.zip
+
+# Configurações locais
+*.log
+.env
+
+# Exportações temporárias
+*.json
+!contabilidade inteligente Chatflow.json
+EOF

@@ -1,0 +1,44 @@
+version: "3.8"
+services:
+  flowise:
+    image: flowiseai/flowise:latest
+    container_name: flowise
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - DATABASE_PATH=/root/.flowise
+      - FLOWISE_USERNAME=admin
+      - FLOWISE_PASSWORD=1234
+    volumes:
+      - ./flowise_data:/root/.flowise
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:15
+    container_name: postgres_contabilidade
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: contabilidade
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+
+  migrator:
+    image: python:3.12
+    container_name: migrator
+    volumes:
+      - ./archive.zip:/app/archive.zip
+      - ./migrate.py:/app/migrate.py
+    depends_on:
+      - postgres
+    command: >
+      sh -c "
+        pip install pandas sqlalchemy psycopg2 pyarrow &&
+        python /app/migrate.py
+      "
