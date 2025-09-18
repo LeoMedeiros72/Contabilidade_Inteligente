@@ -30,7 +30,16 @@ Nesta versão, implementamos:
 **Exemplos de perguntas no chat**:
 > “Quais empresas distribuíram dividendos em 2023?”  
 > “Qual foi a receita líquida da Petrobras em 2022?”  
-> “Há contas vencendo hoje?”  
+> “Há contas vencendo hoje?”
+
+## Exemplos Práticos onde a LLM respondeu:
+
+<img width="381" height="515" alt="image" src="https://github.com/user-attachments/assets/e889ae52-7d30-4002-8061-2f5353d4c9d9" />
+
+<img width="355" height="647" alt="image" src="https://github.com/user-attachments/assets/bd80a5b8-d3c7-4650-8c71-e986adaffeb7" />
+
+<img width="371" height="255" alt="image" src="https://github.com/user-attachments/assets/29574275-3d17-4bfe-9730-81d4890032d9" />
+
 
 ---
 
