@@ -99,11 +99,13 @@ Nesta versão, implementamos:
 1. Clone o repositório  
    ```bash
    git clone https://github.com/seuusuario/Contabilidade_Inteligente.git
-   cd Contabilidade_Inteligente```
+   cd Contabilidade_Inteligente
+   ```
 
 2. Suba os containers com Docker Compose
    ```bash
-   docker compose up -d```
+   docker compose up -d
+   ```
 
 3. Acesse o Flowise
    [http://localhost:3000](http://localhost:3000)
