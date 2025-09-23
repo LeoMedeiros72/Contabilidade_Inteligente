@@ -1,0 +1,11 @@
+import requests
+
+API_URL = "http://localhost:3000/api/v1/prediction/b4f6703c-5c58-4a20-8f21-04cecc2b2846"
+
+def query(payload):
+    response = requests.post(API_URL, json=payload)
+    return response.json()
+    
+output = query({
+    "question": "Hey, how are you?",
+})

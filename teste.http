@@ -1,0 +1,7 @@
+POST http://localhost:3000/api/v1/prediction/0e5764d1-1234-4b88-8fb0-ca07c3f9804f
+Content-Type: application/json
+
+{
+  "question": "Pode me ajudar? Baseado no seu banco de dados, quais as 3 menores empresas que você possui e qual o capital delas?"
+  
+}
